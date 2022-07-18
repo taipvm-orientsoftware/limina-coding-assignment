@@ -363,7 +363,8 @@ export const INVESTMENT = [
   '315.00',
   '414.00',
   '98.00',
-  '728.00'
+  '728.00',
+  '689.00'
 ];
 
 export const JOB_TYPE = [

@@ -11,8 +11,8 @@ type DataTableProps = {
 
 export default function DataTable({ columns, data }: DataTableProps): JSX.Element {
   /* useState */
-  const [rowHeight] = useState<number>(36);
-  const [viewportHeight] = useState<number>(rowHeight * 23);
+  const [rowHeight] = useState<number>(30);
+  const [viewportHeight] = useState<number>(rowHeight * 20);
   const [nodePadding] = useState<number>(5);
 
   /* custom hooks */
