@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { TOTAL_ITEMS } from '../../../../constants';
 import { useScrollDetect } from '../../../../hooks';
@@ -11,7 +11,6 @@ type DataTableProps = {
 
 export default function DataTable({ columns, data }: DataTableProps): JSX.Element {
   /* useState */
-  const [items, setItems] = useState<User[]>([]);
   const [rowHeight] = useState<number>(36);
   const [viewportHeight] = useState<number>(rowHeight * 23);
   const [nodePadding] = useState<number>(5);
@@ -36,7 +35,9 @@ export default function DataTable({ columns, data }: DataTableProps): JSX.Elemen
   }, [columns]);
 
   const renderTableRows = useMemo(() => {
-    return items.map(item => (
+    const visibleRows = data.slice(startRow, endRow);
+
+    return visibleRows.map(item => (
       <tr key={item.id}>
         <td>{item.id}</td>
         <td>{item.firstName}</td>
@@ -55,10 +56,6 @@ export default function DataTable({ columns, data }: DataTableProps): JSX.Elemen
         <td>{item.company}</td>
       </tr>
     ));
-  }, [items]);
-
-  useEffect(() => {
-    setItems(data.slice(startRow, endRow));
   }, [data, startRow, endRow]);
 
   return (
