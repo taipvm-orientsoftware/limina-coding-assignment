@@ -9,8 +9,8 @@
     "eject": "react-scripts eject",
     "lint:check": "eslint src/ --ext .ts,.tsx",
     "lint:fix": "yarn lint --fix",
-    "format:check": "npx prettier --check src/",
-    "format:fix": "npx prettier --write src/"
+    "format:check": "prettier --check src/",
+    "format:fix": "prettier --write src/"
   },
   "eslintConfig": {
     "extends": [

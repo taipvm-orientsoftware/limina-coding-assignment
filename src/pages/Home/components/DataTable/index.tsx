@@ -11,8 +11,8 @@ type DataTableProps = {
 
 export default function DataTable({ columns, data }: DataTableProps): JSX.Element {
   /* useState */
-  const [rowHeight] = useState<number>(30);
-  const [viewportHeight] = useState<number>(rowHeight * 20);
+  const [rowHeight] = useState<number>(36);
+  const [viewportHeight] = useState<number>(rowHeight * 21);
   const [nodePadding] = useState<number>(5);
 
   /* custom hooks */
@@ -31,29 +31,33 @@ export default function DataTable({ columns, data }: DataTableProps): JSX.Elemen
   const offsetY = startRow * rowHeight;
 
   const renderTableHeader = useMemo(() => {
-    return columns.map(({ name, key }) => <th key={key}>{name}</th>);
+    return columns.map(({ name, key }) => (
+      <th key={key} className="p-2">
+        {name}
+      </th>
+    ));
   }, [columns]);
 
   const renderTableRows = useMemo(() => {
-    const visibleRows = data.slice(startRow, endRow);
+    const visibleItems = data.slice(startRow, endRow);
 
-    return visibleRows.map(item => (
+    return visibleItems.map(item => (
       <tr key={item.id}>
-        <td>{item.id}</td>
-        <td>{item.firstName}</td>
-        <td>{item.lastName}</td>
-        <td>{item.email}</td>
-        <td>{item.phoneNumber}</td>
-        <td>{item.dataOfBirth}</td>
-        <td>{item.gender}</td>
-        <td>{item.address}</td>
-        <td>{item.state}</td>
-        <td>{item.country}</td>
-        <td>{item.zipCode}</td>
-        <td>{`$${item.investment}`}</td>
-        <td>{item.product}</td>
-        <td>{item.job}</td>
-        <td>{item.company}</td>
+        <td className="p-2">{item.id}</td>
+        <td className="p-2">{item.firstName}</td>
+        <td className="p-2">{item.lastName}</td>
+        <td className="p-2">{item.email}</td>
+        <td className="p-2">{item.phoneNumber}</td>
+        <td className="p-2">{item.dataOfBirth}</td>
+        <td className="p-2">{item.gender}</td>
+        <td className="p-2">{item.address}</td>
+        <td className="p-2">{item.state}</td>
+        <td className="p-2">{item.country}</td>
+        <td className="p-2">{item.zipCode}</td>
+        <td className="p-2">{`$${item.investment}`}</td>
+        <td className="p-2">{item.product}</td>
+        <td className="p-2">{item.job}</td>
+        <td className="p-2">{item.company}</td>
       </tr>
     ));
   }, [data, startRow, endRow]);
@@ -62,7 +66,7 @@ export default function DataTable({ columns, data }: DataTableProps): JSX.Elemen
     <div className="overflow-x-auto flex-1" ref={ref}>
       <div style={{ height: `${totalContentHeight}px` }}>
         <table
-          className="table table-compact table-zebra w-full text-sm md:text-xs"
+          className="table table-zebra w-full text-xs lg:text-sm"
           style={{ transform: `translateY(${offsetY}px)` }}
         >
           <thead>
