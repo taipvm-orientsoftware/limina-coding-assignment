@@ -1,0 +1,1 @@
+export { generateUsers } from './dataGenerator';
