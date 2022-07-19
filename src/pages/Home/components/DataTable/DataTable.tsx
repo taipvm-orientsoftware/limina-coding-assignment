@@ -11,24 +11,24 @@ type DataTableProps = {
 
 export default function DataTable({ columns, data }: DataTableProps): JSX.Element {
   /* useState */
-  const [rowHeight] = useState<number>(36);
-  const [viewportHeight] = useState<number>(rowHeight * 21);
-  const [nodePadding] = useState<number>(5);
+  const [rowHeight] = useState<number>(32);
+  const [viewportHeight] = useState<number>(window.innerHeight - 96); // 96px is the clientHeight off the page heading
+  const [nodePadding] = useState<number>(2);
 
   /* custom hooks */
   const [scrollTop, ref] = useScrollDetect();
 
-  const totalContentHeight = rowHeight * TOTAL_ITEMS;
+  const totalContentHeight: number = rowHeight * TOTAL_ITEMS;
 
-  let startRow = Math.floor(scrollTop / rowHeight) - nodePadding;
+  let startRow: number = Math.floor(scrollTop / rowHeight) - nodePadding;
   startRow = Math.max(0, startRow);
 
-  let visibleRows = Math.ceil(viewportHeight / rowHeight) + 2 * nodePadding;
+  let visibleRows: number = Math.ceil(viewportHeight / rowHeight) + 2 * nodePadding;
   visibleRows = Math.min(TOTAL_ITEMS - startRow, visibleRows);
 
-  const endRow = startRow + visibleRows;
+  const endRow: number = startRow + visibleRows;
 
-  const offsetY = startRow * rowHeight;
+  const offsetY: number = startRow * rowHeight;
 
   const renderTableHeader = useMemo(() => {
     return columns.map(({ name, key }) => (
@@ -66,7 +66,7 @@ export default function DataTable({ columns, data }: DataTableProps): JSX.Elemen
     <div className="overflow-x-auto flex-1" ref={ref}>
       <div style={{ height: `${totalContentHeight}px` }}>
         <table
-          className="table table-zebra w-full text-xs lg:text-sm"
+          className="table table-zebra w-full text-xs xl:text-sm"
           style={{ transform: `translateY(${offsetY}px)` }}
         >
           <thead>

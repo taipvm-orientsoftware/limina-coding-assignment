@@ -14,7 +14,7 @@ export default function Home(): JSX.Element {
 
   return (
     <div className="mx-auto flex flex-col h-screen">
-      <h1 className="text-center leading-tight font-bold py-8 select-none">Limina Coding Assignment</h1>
+      <h1 className="text-center font-bold py-8">Limina Coding Assignment</h1>
       <DataTable columns={TABLE_HEADER} data={data} />
     </div>
   );
